@@ -1,0 +1,123 @@
+.factory-dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Stretch to full width */
+    min-height: 100vh; /* Stretch to viewport height */
+    font-family: sans-serif; /* Adjust font family as needed */
+  }
+  
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .top-section h2 {
+    margin: 0;
+  }
+  
+  .top-section select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 20px;
+  }
+  
+  .quick-links {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .quick-links button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .emission-sources {
+    width: 20%;
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+  }
+  
+  .emission-sources ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .emission-sources li {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .emission-sources li.active {
+    background-color: #f0f0f0;
+  }
+  
+  .data-entry-form {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .data-entry-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .data-entry-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .data-entry-form input,
+  .data-entry-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .data-entry-form textarea {
+    resize: vertical;
+  }
+  
+  .data-entry-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #008000; /* Dark green button */
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Optional styles for a data preview panel (replace with your design) */
+  .data-preview {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .data-preview table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-preview th,
+  .data-preview td {
+    padding: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  

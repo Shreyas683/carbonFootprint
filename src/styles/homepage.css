@@ -1,0 +1,84 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0fff0; /* Light green background */
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.hero {
+  padding: 50px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  color: #333; /* Darker text for contrast */
+  margin-bottom: 30px;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cta-container button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #008000; /* Dark green for buttons */
+  color: white;
+  cursor: pointer;
+  font-size: large;
+}
+
+.cta-container button:hover{
+  background-color: darkgreen;
+}
+
+.benefits h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.benefit {
+  background-color: #e0ffe0; /* Lighter green for benefit boxes */
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.benefit h3 {
+  margin-bottom: 15px;
+  
+}
+
+.benefit ul {
+  list-style: none;
+  padding: 0;
+}
+
+.benefit li {
+  margin-bottom: 5px;
+}
+
+/* About Us Section (Optional) */
+
+.about-us {
+  padding: 50px;
+}
+
+.about-us p {
+  margin-bottom: 15px;
+}

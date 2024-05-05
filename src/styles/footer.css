@@ -1,0 +1,32 @@
+.footer {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for contrast */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Space icons evenly */
+  }
+  
+  .socialMedia {
+    display: flex;
+  }
+  
+  .socialMedia svg {
+    margin: 0 10px; /* Add spacing between icons */
+    font-size: 2.5em; /* Adjust icon size as desired */
+    cursor: pointer; /* Add hover effect (optional) */
+
+  }
+
+
+  
+  .socialMedia svg:hover {
+    /* Add hover effect styles here (optional) */
+    transform: scale(1.5); 
+  }
+
+  .footer p{
+    font-size: 12px;
+  }
+  
