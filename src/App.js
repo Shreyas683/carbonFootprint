@@ -8,6 +8,7 @@ import RegisterFactory from "./components/registerFactory";
 import Footer from "./components/footer";
 import FactoryEmissionDashboard from "./components/FactoryEmissionDashboard";
 import RegulatorsDashboard from "./components/government";
+import Analysis from "./components/analysis";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/registerFactory" element={<RegisterFactory />} />
           <Route path="/factoryDashboard" element={<FactoryEmissionDashboard />} />
           <Route path="/govt" element={<RegulatorsDashboard />} />
+          <Route path="/analysis" element={<Analysis />} />
 
         </Routes>
         <Footer />

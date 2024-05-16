@@ -13,7 +13,7 @@ function HomePage() {
           <Link to="/registerFactory">
             <button>Register Your Factory</button>
           </Link>
-          <Link to="analysis">
+          <Link to="/analysis">
             <button>Explore Carbon Footprint Data</button>
           </Link>
         </div>
