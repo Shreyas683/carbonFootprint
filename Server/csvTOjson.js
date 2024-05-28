@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Path to your CSV file
-const csvFilePath = path.join(__dirname, '../public/Industry_co2_emission.csv'); // Replace 'data.csv' with your CSV file name
+const csvFilePath = path.join(__dirname, '../public/CO2_csv.csv'); // Replace 'data.csv' with your CSV file name
 
 // Function to convert CSV to JSON
 async function convertCsvToJson() {
@@ -11,7 +11,7 @@ async function convertCsvToJson() {
         const jsonArray = await csv().fromFile(csvFilePath);
 
         // Output file path
-        const jsonFilePath = path.join(__dirname, 'data.json'); // This will save the JSON data as 'data.json'
+        const jsonFilePath = path.join(__dirname, 'CO2.json'); // This will save the JSON data as 'data.json'
         
         // Write JSON data to file
         fs.writeFileSync(jsonFilePath, JSON.stringify(jsonArray, null, 2), 'utf8');

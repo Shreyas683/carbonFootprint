@@ -1,0 +1,32 @@
+.chart-container {
+  margin-top: 50px;
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+}
+
+button {
+  padding: 20px;
+  background-color: darkolivegreen;
+  color: white;
+  margin-left: 5%;
+  margin-top: 2%;
+  width: 200px;
+}
+.btn1 {
+  margin-left: 10%;
+}
+
+.chart-container {
+  margin-left: 25%;
+  margin-bottom: 10%;
+}
+.chart-container h2 {
+  display: grid;
+  justify-content: center;
+}
+
+.chart-container .chartjs-chart div.chartjs-linear-axis div.chartjs-scale div.chartjs-scale-label span.chartjs-scale-label-text {
+    font-weight: bold;
+  }
+  

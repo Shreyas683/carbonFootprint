@@ -25,7 +25,7 @@ const RegisterFactory = () => {
     );
 
     try {
-      const response = await fetch("/registerFactory", {
+      const response = await fetch("http://localhost:5000/registerFactory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -39,21 +39,27 @@ const RegisterFactory = () => {
         }),
       });
 
-      const responseData = await response.json();
-      console.log("Response from server:", responseData);
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Response from server:", responseData);
+        alert("Factory registered successfully!"); // Show success alert
 
-      // Handle successful registration (optional: clear form, show success message)
-      setFactoryName("");
-      setLocation("");
-      setIndustry("");
-      setContactName("");
-      setContactEmail("");
-      setUsername("");
-      setPassword("");
-      // ... and so on
+        // Handle successful registration (optional: clear form, show success message)
+        setFactoryName("");
+        setLocation("");
+        setIndustry("");
+        setContactName("");
+        setContactEmail("");
+        setUsername("");
+        setPassword("");
+      } else {
+        const errorData = await response.json();
+        console.error("Error registering factory:", errorData);
+        alert("Failed to register factory: " + errorData.message); // Show error alert
+      }
     } catch (error) {
       console.error("Error registering factory:", error);
-      // Handle errors (e.g., display error message to user)
+      alert("An error occurred while registering the factory."); // Show error alert
     }
   }
 

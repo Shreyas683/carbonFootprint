@@ -9,6 +9,8 @@ import Footer from "./components/footer";
 import FactoryEmissionDashboard from "./components/FactoryEmissionDashboard";
 import RegulatorsDashboard from "./components/government";
 import Analysis from "./components/analysis";
+import Table from "./components/table";
+import ChartComponent from "./components/chartComponet";
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
           <Route path="/factoryDashboard" element={<FactoryEmissionDashboard />} />
           <Route path="/govt" element={<RegulatorsDashboard />} />
           <Route path="/analysis" element={<Analysis />} />
-
+          <Route path="/table" element={<Table />} />
+          <Route path="/chart" element={<ChartComponent />} />
         </Routes>
         <Footer />
       </Router>
