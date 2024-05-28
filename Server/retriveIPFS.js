@@ -105,7 +105,7 @@ async function getStoredHash() {
 // Function to retrieve file from IPFS using Pinata
 async function retrieveFileFromPinata(ipfsHash) {
     try {
-        const response = await axios.get(`}https://gateway.pinata.cloud/ipfs/${ipfsHash`, {
+        const response = await axios.get(`https://gateway.pinata.cloud/ipfs/${ipfsHash}`, {
             headers: {
                 'pinata_api_key': pinataApiKey,
                 'pinata_secret_api_key': pinataSecretApiKey
