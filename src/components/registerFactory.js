@@ -12,20 +12,9 @@ const RegisterFactory = () => {
 
   async function handleSubmit(e) {
     e.preventDefault(); // Prevent default form submission behavior
-    // Implement factory registration logic here (e.g., API call, validation)
-    console.log(
-      "Factory Registration:",
-      factoryName,
-      location,
-      industry,
-      contactName,
-      contactEmail,
-      username,
-      password
-    );
 
     try {
-      const response = await fetch("http://localhost:5000/registerFactory", {
+      const response = await fetch("http://localhost:3002/registerFactory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

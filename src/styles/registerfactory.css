@@ -3,35 +3,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f4f4f4;
+  /* height: 100vh; */
+  margin-top: 5%;
+  margin-bottom: 20vh;
+  /* background-color: #f4f4f4; */
 }
 
 .register-form-container {
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(25, 32, 25, 0.199);
-  width: 40%;
+  height: 38rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(25, 32, 25, 0.199);
+  width: 35%;
   background-color: #c3ddc5;
+  margin-bottom: 0px;
 }
 
 .register-form-container h2 {
   text-align: center;
-  color: #333;
+  /* color: #333; */
+  margin-top: 0px;
+  font-style:oblique;
+
 }
 
 /* Form styling */
 .regForm {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 .regForm label {
   font-weight: bold;
   color: #555;
-  margin-left: 10%;
+  /* margin-left: 10%; */
 }
 
 .regForm input[type="text"],
@@ -61,8 +68,8 @@
   cursor: pointer;
   transition: background-color 0.3s;
   width: 30%;
-  margin-left: 35%;
-  margin-top: 5%;
+  margin-left: 10%;
+  margin-top: 3%;
   font-weight: 800;
 }
 

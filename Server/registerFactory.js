@@ -1,46 +1,64 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors'); // Import the cors package
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const port = 5000; // or any port of your choice
+const port = 3002;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors({
-    origin: 'http://localhost:3000'
-  }));
-  
+app.use(cors({ origin: "http://localhost:3000" }));
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/factoryRegistry', {
+mongoose.connect("mongodb://localhost:27017/factoryRegistry", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB");
 });
 
 // Define a schema
 const factorySchema = new mongoose.Schema({
-  factoryName: String,
-  location: String,
-  industry: String,
-  contactName: String,
-  contactEmail: String,
-  username: String,
-  password: String,
+  factoryName: { type: String, required: true },
+  location: { type: String, required: true },
+  industry: { type: String, required: true },
+  contactName: { type: String, required: true },
+  contactEmail: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
 // Create a model
-const Factory = mongoose.model('Factory', factorySchema);
+const Factory = mongoose.model("Factory", factorySchema);
 
 // Define the register route
-app.post('/registerFactory', async (req, res) => {
-  const { factoryName, location, industry, contactName, contactEmail, username, password } = req.body;
+app.post("/registerFactory", async (req, res) => {
+  const {
+    factoryName,
+    location,
+    industry,
+    contactName,
+    contactEmail,
+    username,
+    password,
+  } = req.body;
+
+  if (
+    !factoryName ||
+    !location ||
+    !industry ||
+    !contactName ||
+    !contactEmail ||
+    !username ||
+    !password
+  ) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
   const newFactory = new Factory({
     factoryName,
@@ -49,14 +67,17 @@ app.post('/registerFactory', async (req, res) => {
     contactName,
     contactEmail,
     username,
-    password
+    password,
   });
 
   try {
     const savedFactory = await newFactory.save();
     res.status(201).json(savedFactory);
   } catch (error) {
-    res.status(500).json({ message: 'Error registering factory', error });
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "Username already exists" });
+    }
+    res.status(500).json({ message: "Error registering factory", error });
   }
 });
 

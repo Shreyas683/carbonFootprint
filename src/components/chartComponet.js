@@ -11,7 +11,13 @@ import {
 import "chartjs-adapter-date-fns"; // Import date-fns adapter for Chart.js
 import "../styles/chart.css"; // Import CSS for chart styling
 
-Chart.register(LineController, LineElement, LinearScale, PointElement, TimeScale);
+Chart.register(
+  LineController,
+  LineElement,
+  LinearScale,
+  PointElement,
+  TimeScale
+);
 
 const ChartComponent = () => {
   const [chartData, setChartData] = useState([]);
@@ -105,18 +111,42 @@ const ChartComponent = () => {
 
   return (
     <>
-    <div className="buttons-container">
-        <button className="btn1" onClick={() => handleButtonClick("Agriculture, forestry and fishing")}>Agriculture</button>
-        <button onClick={() => handleButtonClick("Manufacturing")}>Manufacturing</button>
-        <button onClick={() => handleButtonClick("Construction")}>Construction</button>
-        <button onClick={() => handleButtonClick("Transport and storage")}>Transport</button>
-        <button onClick={() => handleButtonClick("Mining and quarrying")}>Mining</button>
+      <div className="buttons-container">
+        <button
+          className="but"
+          onClick={() => handleButtonClick("Agriculture, forestry and fishing")}
+        >
+          Agriculture
+        </button>
+        <button
+          className="but"
+          onClick={() => handleButtonClick("Manufacturing")}
+        >
+          Manufacturing
+        </button>
+        <button
+          className="but"
+          onClick={() => handleButtonClick("Construction")}
+        >
+          Construction
+        </button>
+        <button
+          className="but"
+          onClick={() => handleButtonClick("Transport and storage")}
+        >
+          Transport
+        </button>
+        <button
+          className="but"
+          onClick={() => handleButtonClick("Mining and quarrying")}
+        >
+          Mining
+        </button>
       </div>
-    <div className="chart-container">
-      
-      <h2>{chartLabel} CO2 Emissions</h2>
-      <canvas id="co2Chart"></canvas>
-    </div>
+      <div className="chart-container">
+        <h2>{chartLabel} CO2 Emissions</h2>
+        <canvas id="co2Chart"></canvas>
+      </div>
     </>
   );
 };

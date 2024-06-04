@@ -9,12 +9,15 @@ function HomePage() {
       <section className="hero">
         <h1>Track and Reduce Factory Carbon Footprints</h1>
         <p>A transparent and secure system powered by blockchain technology.</p>
-        <div className="cta-container">
+        <div className="Cta-container">
           <Link to="/registerFactory">
-            <button>Register Your Factory</button>
+            <button className="button-home">Register Your Factory</button>
           </Link>
           <Link to="/analysis">
-            <button>Explore Carbon Footprint Data</button>
+            <button className="button-home">Explore Carbon Footprint Data</button>
+          </Link>
+          <Link to="/upload">
+            <button className="button-home" >Upload File</button>
           </Link>
         </div>
       </section>

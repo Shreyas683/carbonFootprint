@@ -5,18 +5,6 @@
   height: 400px;
 }
 
-button {
-  padding: 20px;
-  background-color: darkolivegreen;
-  color: white;
-  margin-left: 5%;
-  margin-top: 2%;
-  width: 200px;
-}
-.btn1 {
-  margin-left: 10%;
-}
-
 .chart-container {
   margin-left: 25%;
   margin-bottom: 10%;
@@ -26,7 +14,74 @@ button {
   justify-content: center;
 }
 
-.chart-container .chartjs-chart div.chartjs-linear-axis div.chartjs-scale div.chartjs-scale-label span.chartjs-scale-label-text {
-    font-weight: bold;
-  }
+.chart-container
+  .chartjs-chart
+  div.chartjs-linear-axis
+  div.chartjs-scale
+  div.chartjs-scale-label
+  span.chartjs-scale-label-text {
+  font-weight: bold;
+}
+
+.buttons-container{
+  margin-top: 3rem;
+  margin-left: 10rem;
   
+}
+
+.but {
+  --color: #00a97f;
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: 0.3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+  margin-left: 3rem;
+}
+
+.but::before,
+.but::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+}
+
+.but::before {
+  top: -1em;
+  left: -1em;
+}
+
+.but::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.but:hover::before,
+.button:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.but:hover {
+  color: rgb(10, 25, 30);
+}
+
+.but:active {
+  filter: brightness(0.8);
+}

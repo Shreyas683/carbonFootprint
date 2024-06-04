@@ -11,6 +11,8 @@ import RegulatorsDashboard from "./components/government";
 import Analysis from "./components/analysis";
 import Table from "./components/table";
 import ChartComponent from "./components/chartComponet";
+import Upload from "./components/Upload";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/contactUs" element={<ContactUs />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/registerFactory" element={<RegisterFactory />} />
           <Route path="/factoryDashboard" element={<FactoryEmissionDashboard />} />
@@ -27,6 +30,7 @@ function App() {
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/table" element={<Table />} />
           <Route path="/chart" element={<ChartComponent />} />
+          <Route path="/upload" element={<Upload/>} />
         </Routes>
         <Footer />
       </Router>
