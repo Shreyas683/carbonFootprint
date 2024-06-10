@@ -13,6 +13,8 @@ import Table from "./components/table";
 import ChartComponent from "./components/chartComponet";
 import Upload from "./components/Upload";
 import AboutUs from "./components/AboutUs";
+// import { Download } from "@mui/icons-material";
+// import DownloadSection from "./components/Download";
 
 function App() {
   return (
@@ -25,12 +27,16 @@ function App() {
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/registerFactory" element={<RegisterFactory />} />
-          <Route path="/factoryDashboard" element={<FactoryEmissionDashboard />} />
+          <Route
+            path="/factoryDashboard"
+            element={<FactoryEmissionDashboard />}
+          />
           <Route path="/govt" element={<RegulatorsDashboard />} />
           <Route path="/analysis" element={<Analysis />} />
           <Route path="/table" element={<Table />} />
           <Route path="/chart" element={<ChartComponent />} />
-          <Route path="/upload" element={<Upload/>} />
+          <Route path="/upload" element={<Upload />} />
+          {/* <Route path="/download" element={<DownloadSection/>} /> */}
         </Routes>
         <Footer />
       </Router>

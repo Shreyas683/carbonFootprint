@@ -7,15 +7,18 @@ import chart from "../assets/line-chart.gif"; // Update this path if the GIF is 
 const Analysis = () => {
   return (
     <div className="analysis">
-      <div>
-        Analysys
+      <div className="heading">
+        <div className="table">Table</div>
+        <div className="chart">Chart</div>
+      </div>
+      <div className="analysis-links">
         <Link to="/table" className="table">
           <img src={gifPath} alt="Table Analysis GIF" />
         </Link>
+        <Link to="/chart" className="chart">
+          <img src={chart} alt="Chart Analysis GIF" />
+        </Link>
       </div>
-      <Link to="/Chart" className="chart">
-        <img src={chart} alt="Chart Analysis GIF" />
-      </Link>
     </div>
   );
 };

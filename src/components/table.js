@@ -29,8 +29,8 @@ const Table = () => {
   return (
     <div className="table-container">
       <table className="data-table">
-        <thead className='heading'>
-          <tr className='heading'>
+        <thead>
+          <tr>
             <th>Years</th>
             <th>Agriculture</th>
             <th>Manufacturing</th>

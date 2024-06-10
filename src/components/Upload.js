@@ -8,6 +8,9 @@ function Upload() {
   const [uploadMessage, setUploadMessage] = useState(null);
   const [ipfsHash, setIpfsHash] = useState(null);
   const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
+  const [isUploadMode, setIsUploadMode] = useState(true);
+  const [downloadHash, setDownloadHash] = useState("");
+  const [downloadMessage, setDownloadMessage] = useState(null);
 
   useEffect(() => {
     checkMetaMaskConnection();
@@ -75,20 +78,18 @@ function Upload() {
     }
   };
 
-  const convertAndStoreFile = async (ipfsHash) => {
+  const convertAndStoreFile = async () => {
     if (!selectedFile) return;
 
     const fileReader = new FileReader();
     fileReader.onload = async () => {
       const fileContent = fileReader.result;
       const jsonData = JSON.stringify({
-        factoryName,
-        ipfsHash,
         fileContent,
       });
 
       try {
-        const response = await fetch("http://localhost:5000/store-json", {
+        const response = await fetch("http://localhost:3005/store-json", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -113,45 +114,45 @@ function Upload() {
     const contractAddress = "0x852233ff6e0997272a8fc707795e35a3349d919b";
     const contractABI = [
       {
-        "constant": false,
-        "inputs": [
+        constant: false,
+        inputs: [
           {
-            "name": "_ipfsHash",
-            "type": "string"
-          }
+            name: "_ipfsHash",
+            type: "string",
+          },
         ],
-        "name": "setHash",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+        name: "setHash",
+        outputs: [],
+        payable: false,
+        stateMutability: "nonpayable",
+        type: "function",
       },
       {
-        "constant": true,
-        "inputs": [],
-        "name": "getHash",
-        "outputs": [
+        constant: true,
+        inputs: [],
+        name: "getHash",
+        outputs: [
           {
-            "name": "",
-            "type": "string"
-          }
+            name: "",
+            type: "string",
+          },
         ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+        payable: false,
+        stateMutability: "view",
+        type: "function",
       },
       {
-        "anonymous": false,
-        "inputs": [
+        anonymous: false,
+        inputs: [
           {
-            "indexed": true,
-            "name": "newHash",
-            "type": "string"
-          }
+            indexed: true,
+            name: "newHash",
+            type: "string",
+          },
         ],
-        "name": "HashSet",
-        "type": "event"
-      }
+        name: "HashSet",
+        type: "event",
+      },
     ];
 
     try {
@@ -173,8 +174,38 @@ function Upload() {
     }
   };
 
+  const handleDownload = async () => {
+    if (!downloadHash) {
+      setDownloadMessage("Please enter a valid IPFS hash.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://gateway.pinata.cloud/ipfs/${downloadHash}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch file from IPFS");
+      }
+
+      const fileContent = await response.text();
+      const blob = new Blob([fileContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "downloaded_file.txt";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setDownloadMessage("File downloaded successfully.");
+    } catch (error) {
+      setDownloadMessage("Failed to download file: " + error.message);
+    }
+  };
+
   const factoryOptions = [
-    { value: "factory-0", label: "Select Factory" },
+    { value: "", label: "Select Factory" },
     { value: "factory-1", label: "Agriculture, forestry and fishing" },
     { value: "factory-2", label: "Manufacturing" },
     { value: "factory-3", label: "Construction" },
@@ -183,45 +214,83 @@ function Upload() {
   ];
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="upload-file">
-        Select file:
-        <input type="file" id="upload-file" onChange={handleFileChange} />
-      </label>
-
-
-
-      
-      <br />
-      <label htmlFor="factory-dropdown">
-        Factory Name:
-        <select
-          id="factory-dropdown"
-          value={factoryName}
-          onChange={handleFactoryChange}
-        >
-          {factoryOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <button type="submit" className="button">
-        Upload
-      </button>
-      {uploadMessage && <p className="upload-message">{uploadMessage}</p>}
-      {ipfsHash && isMetaMaskConnected && (
-        <button
-          type="button"
-          onClick={storeHashOnBlockchain}
-          className="button"
-        >
-          Store in Blockchain
+    <div className="upload-container">
+      {/* <div className="button-group">
+        <button onClick={() => setIsUploadMode(true)} className="button">
+          Upload
         </button>
+        <button onClick={() => setIsUploadMode(false)} className="button">
+          Download
+        </button>
+      </div> */}
+      {isUploadMode ? (
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="upload-file">
+            Select file:
+            <input type="file" id="upload-file" onChange={handleFileChange} />
+          </label>
+          <br />
+          <label htmlFor="factory-dropdown">
+            Factory Name:
+            <select
+              id="factory-dropdown"
+              value={factoryName}
+              onChange={handleFactoryChange}
+            >
+              {factoryOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+          <div className="button-group">
+            <button onClick={() => setIsUploadMode(true)} className="button">
+              Upload
+            </button>
+            <button onClick={() => setIsUploadMode(false)} className="button">
+              Download
+            </button>
+          </div>
+
+          {uploadMessage && <p className="upload-message">{uploadMessage}</p>}
+          {ipfsHash && isMetaMaskConnected && (
+            <button
+              type="button"
+              onClick={storeHashOnBlockchain}
+              className="button"
+            >
+              Store in Blockchain
+            </button>
+          )}
+        </form>
+      ) : (
+        <div className="download-section">
+          <label htmlFor="ipfs-hash" className="ipfs-hash">
+            <p> Enter IPFS Hash: </p>
+            <input
+              type="text"
+              id="ipfs-hash"
+              value={downloadHash}
+              onChange={(e) => setDownloadHash(e.target.value)}
+            />
+          </label>
+          <br />
+          <div className="button-group1">
+            <button onClick={() => setIsUploadMode(true)} className="button">
+              Upload
+            </button>
+            <button onClick={handleDownload} className="button">
+              Download
+            </button>
+          </div>
+          {downloadMessage && (
+            <p className="download-message">{downloadMessage}</p>
+          )}
+        </div>
       )}
-    </form>
+    </div>
   );
 }
 

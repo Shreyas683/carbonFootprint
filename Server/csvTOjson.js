@@ -25,49 +25,84 @@
 // // Call the function
 // convertCsvToJson();
 
-// // csv -> json  -> IPFS -> retrive -> json form -> frontend -> visualization
+// ////////////////////////////////////////////////////////////////////////////////////////////////// csv -> json  -> IPFS -> retrive -> json form -> frontend -> visualization
+
+// const express = require("express");
+// const fileUpload = require("express-fileupload");
+// const fs = require("fs");
+// const path = require("path");
+
+// const app = express();
+// const PORT = 3005;
+
+// app.use(fileUpload());
+// app.use(express.json());
+
+// app.post("/upload", (req, res) => {
+//   if (!req.files || Object.keys(req.files).length === 0) {
+//     return res.status(400).send("No files were uploaded.");
+//   }
+
+//   const file = req.files.file;
+//   const uploadPath = path.join(__dirname, "uploads", file.name);
+
+//   file.mv(uploadPath, (err) => {
+//     if (err) return res.status(500).send(err);
+
+//     // Simulating IPFS hash for demonstration purposes
+//     const ipfsHash = "QmFakeIpfsHashForDemoPurpose";
+
+//     res.json({ IpfsHash: ipfsHash });
+//   });
+// });
+
+// app.post("/store-json", (req, res) => {
+//   const jsonData = req.body;
+
+//   const fileName = `data_${Date.now()}.json`;
+//   const filePath = path.join(__dirname, "data", fileName);
+
+//   fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (err) => {
+//     if (err) {
+//       console.error("Error writing JSON file:", err);
+//       return res.status(500).send("Failed to store JSON data");
+//     }
+
+//     res.send("JSON data stored successfully");
+//   });
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const express = require("express");
-const fileUpload = require("express-fileupload");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 5000;
+const PORT = 3005;
 
-app.use(fileUpload());
-app.use(express.json());
+// Middleware
+app.use(cors());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-app.post("/upload", (req, res) => {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send("No files were uploaded.");
-  }
-
-  const file = req.files.file;
-  const uploadPath = path.join(__dirname, "uploads", file.name);
-
-  file.mv(uploadPath, (err) => {
-    if (err) return res.status(500).send(err);
-
-    // Simulating IPFS hash for demonstration purposes
-    const ipfsHash = "QmFakeIpfsHashForDemoPurpose";
-
-    res.json({ IpfsHash: ipfsHash });
-  });
-});
-
+// POST endpoint for storing JSON data
 app.post("/store-json", (req, res) => {
   const jsonData = req.body;
 
-  const fileName = `data_${Date.now()}.json`;
-  const filePath = path.join(__dirname, "data", fileName);
-
+  // Store JSON data (you can adjust the path and file name as needed)
+  const filePath = path.join(__dirname, "data", "fileData.json");
   fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (err) => {
     if (err) {
-      console.error("Error writing JSON file:", err);
+      console.error("Error writing file:", err);
       return res.status(500).send("Failed to store JSON data");
     }
-
     res.send("JSON data stored successfully");
   });
 });
