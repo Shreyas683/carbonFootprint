@@ -26,7 +26,7 @@ const Login = () => {
     <div className="login-page">
       <div className="login-form-container">
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginForm">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -51,7 +51,7 @@ const Login = () => {
             <option value="consumer">Consumer</option>
             <option value="investor">Investor</option>
           </select>
-          <button type="submit">Login</button>
+          <button type="submit" className="loginbtn">Login</button>
         </form>
       </div>
     </div>

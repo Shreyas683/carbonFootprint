@@ -50,14 +50,14 @@ function HomePage() {
               <li>Confidence in the data's accuracy</li>
             </ul>
           </div>
-          <div className="benefit">
+          {/* <div className="benefit">
             <h3>Investors</h3>
             <ul>
               <li>Evaluate sustainability practices before investment</li>
               <li>Identify potential environmental liabilities</li>
               <li>Encourage factories to reduce their carbon footprint</li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -76,8 +76,7 @@ function HomePage() {
                 <li><strong>Energy Efficiency:</strong> Embracing energy-efficient technologies and practices not only reduces utility bills but also cuts down on carbon emissions.</li>
                 <li><strong>Transportation Choices:</strong> Transportation is a significant contributor to carbon emissions. By opting for public transportation, carpooling, biking, or walking whenever possible, individuals can significantly reduce their carbon footprint.</li>
             </ul>
-            <p><strong>Our Commitment to SDG 12</strong></p>
-            <p>[Your Organization/Website Name] is committed to promoting responsible consumption and production practices. Through our [products/services/initiatives], we strive to minimize our carbon footprint and contribute to a more sustainable future. Join us in our journey towards a greener, more sustainable world.</p>
+            <p><b>EmissionMission.com</b> is committed to promoting responsible consumption and production practices. Through our [products/services/initiatives], we strive to minimize our carbon footprint and contribute to a more sustainable future. Join us in our journey towards a greener, more sustainable world.</p>
         </section>
     </div>
   );

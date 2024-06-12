@@ -1,57 +1,86 @@
+/* login.css - Brown Theme */
+
 .login-page {
-    background-color: #f0fff0; /* Light green background */
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5%;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  /* align-items: center; */
+  height: 100vh;
+}
+
+.login-form-container {
+  background-color: #b8b0b0;
+  padding: 2.5rem;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(121, 85, 72, 0.15);
+  width: 100%;
+  max-width: 700px;
+  height: 70vh;
+}
+
+.login-form-container h2 {
+  text-align: center;
+  color: #4a281e;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+input,
+select {
+  padding: 0.7rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+}
+select{
+  width: 220px;
+}
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #8d6e63;
+  box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+}
+
+select {
+  cursor: pointer;
+}
+
+.loginbtn {
+  background-color: #795548;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  width: 10rem;
+  height: 3.5rem;
+  margin-top: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+}
+
+.loginbtn:hover {
+  background-color: #5a3e34;
+}
+
+.loginbtn:active {
+  background-color: #5d4037;
+}
+
+@media screen and (max-width: 480px) {
   .login-form-container {
-    background-color: #18453B; /* White form container */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 30%;
+    padding: 2rem;
   }
-  
-  .login-form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: white;
-    font-size: 30px;
-  }
-  
-  .login-form-container label {
-    display: block;
-    margin-bottom: 5px;
-    color: white;
-  }
-  
-  .login-form-container input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 15px;
-  }
-  
-  .login-form-container select {
-    width: 94.5%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 15px;
-  }
-  
-  .login-form-container button {
-    background-color: #D0F0C0; /* Dark green button */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #014421;
-    margin-left: 45%;
-  }
-  
+}
+
+.loginForm {
+border-radius: 30px;
+}

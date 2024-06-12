@@ -79,34 +79,41 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const fs = require("fs");
+const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
-const PORT = 3005;
+const upload = multer({ dest: path.join(__dirname, "../Server/data") });
 
-// Middleware
 app.use(cors());
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// POST endpoint for storing JSON data
-app.post("/store-json", (req, res) => {
-  const jsonData = req.body;
+app.post("/store-json", upload.single("file"), (req, res) => {
+  const file = req.file;
+  const factoryName = req.body.factoryName;
 
-  // Store JSON data (you can adjust the path and file name as needed)
-  const filePath = path.join(__dirname, "data", "fileData.json");
-  fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (err) => {
+  if (!file) {
+    return res.status(400).json({ error: "No file uploaded." });
+  }
+
+  if (!factoryName) {
+    return res.status(400).json({ error: "No factory name provided." });
+  }
+
+  // Generate the new file path based on the factory name
+  const newFilePath = path.join(file.destination, `${factoryName}.json`);
+  fs.rename(file.path, newFilePath, (err) => {
     if (err) {
-      console.error("Error writing file:", err);
-      return res.status(500).send("Failed to store JSON data");
+      return res.status(500).json({ error: "Error saving file." });
     }
-    res.send("JSON data stored successfully");
+    res.json({ message: "File uploaded successfully", fileName: `${factoryName}.json` });
   });
 });
 
+const PORT = 3005;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

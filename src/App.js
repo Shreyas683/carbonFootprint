@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import "./App.css";
 import ContactUs from "./components/contactUs";
 import Homepage from "./components/homepage";
@@ -10,13 +12,18 @@ import FactoryEmissionDashboard from "./components/FactoryEmissionDashboard";
 import RegulatorsDashboard from "./components/government";
 import Analysis from "./components/analysis";
 import Table from "./components/table";
-import ChartComponent from "./components/chartComponet";
+import ChartComponent from "./components/SectorCharts";
 import Upload from "./components/Upload";
 import AboutUs from "./components/AboutUs";
+import GasElements from "./components/ChartElements";
+import SectorCharts from "./components/SectorCharts"
 // import { Download } from "@mui/icons-material";
 // import DownloadSection from "./components/Download";
 
 function App() {
+
+  const [sector, setSector] = useState("");
+
   return (
     <div className="App">
       <Router>
@@ -36,7 +43,12 @@ function App() {
           <Route path="/table" element={<Table />} />
           <Route path="/chart" element={<ChartComponent />} />
           <Route path="/upload" element={<Upload />} />
-          {/* <Route path="/download" element={<DownloadSection/>} /> */}
+          {/* <Route path="/gasElements" element={
+            <>
+              <ChartComponent selectedGas={selectedGas} />
+            </>
+          }  /> */}
+          <Route path="/sector-charts" element={<SectorCharts sector={sector}/>} />
         </Routes>
         <Footer />
       </Router>

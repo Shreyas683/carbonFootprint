@@ -1,7 +1,6 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
-const url = require("url");
 
 const server = http.createServer((req, res) => {
   // Set CORS headers to allow requests from http://localhost:3000
@@ -9,12 +8,11 @@ const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Methods", "GET");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Parse the query string to get the selected sector
-  const queryObject = url.parse(req.url,true).query;
-  const sector = queryObject.sector;
+  // Parse the URL to get the selected gas
+//   const selectedFactory = req.url.slice(1); // Remove leading slash
 
-  // Construct the file path based on the selected sector
-  const filePath = path.join(__dirname, "../Server/data", `${sector}.json`);
+  // Construct the file path based on the selected factory
+  const filePath = path.join(__dirname, "../Server/CO2.json");
 
   // Check if the file exists
   fs.access(filePath, fs.constants.F_OK, (err) => {
@@ -36,7 +34,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-const PORT = 4000;
+const PORT = 4001;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

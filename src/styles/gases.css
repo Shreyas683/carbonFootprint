@@ -1,0 +1,23 @@
+/* CH4Chart.css */
+
+.ch4-chart-container {
+    width: 50%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ch4-chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ch4-chart-container {
+      width: 95%;
+      padding: 1rem;
+    }
+  }

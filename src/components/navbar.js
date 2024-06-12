@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.png";
 import metamaskIcon from "../assets/metamask-icon.png";
 import "../styles/navbar.css";
 import { Link } from "react-router-dom";
@@ -57,8 +57,6 @@ const Navbar = () => {
     <div className="navbar">
       <div className="logo">
         <img src={logo} alt="logo" />
-        <p>CarFoot</p>
-        {/* <h1>2</h1> */}
       </div>
       <div>
         <ul className="components">

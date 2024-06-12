@@ -13,12 +13,13 @@
 .logo {
   display: flex;
   align-items: center;
+  margin-left: 3vw;
 }
 
 .logo img {
-  height: 80px; /* Adjust height as needed */
+  height: 100px; /* Adjust height as needed */
   /* margin-right: 20px; Add margin to space out the logo from the text */
-  width: 90px;
+  width: 130px;
 }
 
 .logo p {

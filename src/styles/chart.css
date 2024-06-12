@@ -1,32 +1,48 @@
 .chart-container {
   margin-top: 50px;
-  width: 80%;
+  width: 40%;
   max-width: 800px;
   height: 400px;
+  display: flex;
+  float: left;
+  margin-left: 6.5vw;
 }
 
-.chart-container {
-  margin-left: 25%;
-  margin-bottom: 10%;
-}
-.chart-container h2 {
-  display: grid;
-  justify-content: center;
+
+
+
+.chart-container1 {
+  margin-top: 50px;
+  width: 40%;
+  max-width: 800px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  float: right;
+  margin-right: 6.5vw;
 }
 
-.chart-container
-  .chartjs-chart
-  div.chartjs-linear-axis
-  div.chartjs-scale
-  div.chartjs-scale-label
-  span.chartjs-scale-label-text {
-  font-weight: bold;
+
+
+
+.chart-container2 {
+  margin-top: 80px;
+  width: 42%;
+  max-width: 900px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 29vw;
+  margin-bottom: 15vh;
 }
 
-.buttons-container{
+
+
+
+
+.buttons-container {
   margin-top: 3rem;
-  margin-left: 10rem;
-  
+  margin-left: 22vw;
 }
 
 .but {
@@ -84,4 +100,10 @@
 
 .but:active {
   filter: brightness(0.8);
+}
+
+.title {
+  display: grid;
+  justify-content: center;
+  margin-top: 3rem;
 }

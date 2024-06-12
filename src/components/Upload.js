@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import JsonConverter from "./jsonConverter";
 import "../styles/upload.css";
 
 function Upload() {
@@ -11,6 +12,7 @@ function Upload() {
   const [isUploadMode, setIsUploadMode] = useState(true);
   const [downloadHash, setDownloadHash] = useState("");
   const [downloadMessage, setDownloadMessage] = useState(null);
+  const [isConverting, setIsConverting] = useState(false);
 
   useEffect(() => {
     checkMetaMaskConnection();
@@ -30,10 +32,7 @@ function Upload() {
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-    setUploadMessage(null);
-    setIpfsHash(null);
+    setSelectedFile(event.target.files[0]);
   };
 
   const handleFactoryChange = (event) => {
@@ -204,25 +203,31 @@ function Upload() {
     }
   };
 
+  const handleConvertAndStoreJson = () => {
+    if (!selectedFile) {
+      setUploadMessage("Please select a file to convert and store as JSON.");
+      return;
+    }
+
+    if (!factoryName) {
+      setUploadMessage("Please select a factory name.");
+      return;
+    }
+
+    setIsConverting(true);
+  };
+
   const factoryOptions = [
     { value: "", label: "Select Factory" },
-    { value: "factory-1", label: "Agriculture, forestry and fishing" },
-    { value: "factory-2", label: "Manufacturing" },
-    { value: "factory-3", label: "Construction" },
-    { value: "factory-4", label: "Transport and storage" },
-    { value: "factory-5", label: "Mining and quarrying" },
+    { value: "Agriculture", label: "Agriculture, forestry and fishing" },
+    { value: "Manufacturing", label: "Manufacturing" },
+    { value: "Construction", label: "Construction" },
+    { value: "Transport", label: "Transport and storage" },
+    { value: "Mining", label: "Mining and quarrying" },
   ];
 
   return (
     <div className="upload-container">
-      {/* <div className="button-group">
-        <button onClick={() => setIsUploadMode(true)} className="button">
-          Upload
-        </button>
-        <button onClick={() => setIsUploadMode(false)} className="button">
-          Download
-        </button>
-      </div> */}
       {isUploadMode ? (
         <form onSubmit={handleSubmit}>
           <label htmlFor="upload-file">
@@ -246,14 +251,24 @@ function Upload() {
           </label>
           <br />
           <div className="button-group">
-            <button onClick={() => setIsUploadMode(true)} className="button">
+            <button type="submit" className="button">
               Upload
             </button>
-            <button onClick={() => setIsUploadMode(false)} className="button">
+            <button
+              type="button"
+              onClick={() => setIsUploadMode(false)}
+              className="button"
+            >
               Download
             </button>
+            <button
+              type="button"
+              onClick={handleConvertAndStoreJson}
+              className="button"
+            >
+              Convert and Store JSON
+            </button>
           </div>
-
           {uploadMessage && <p className="upload-message">{uploadMessage}</p>}
           {ipfsHash && isMetaMaskConnected && (
             <button
@@ -268,7 +283,7 @@ function Upload() {
       ) : (
         <div className="download-section">
           <label htmlFor="ipfs-hash" className="ipfs-hash">
-            <p> Enter IPFS Hash: </p>
+            <p>Enter IPFS Hash:</p>
             <input
               type="text"
               id="ipfs-hash"
@@ -277,11 +292,15 @@ function Upload() {
             />
           </label>
           <br />
-          <div className="button-group1">
-            <button onClick={() => setIsUploadMode(true)} className="button">
+          <div className="button-group">
+            <button
+              type="button"
+              onClick={() => setIsUploadMode(true)}
+              className="button"
+            >
               Upload
             </button>
-            <button onClick={handleDownload} className="button">
+            <button type="button" onClick={handleDownload} className="button">
               Download
             </button>
           </div>
@@ -289,6 +308,16 @@ function Upload() {
             <p className="download-message">{downloadMessage}</p>
           )}
         </div>
+      )}
+      {isConverting && (
+        <JsonConverter
+          file={selectedFile}
+          factoryName={factoryName}
+          onConversionComplete={(message) => {
+            setUploadMessage(message);
+            setIsConverting(false);
+          }}
+        />
       )}
     </div>
   );

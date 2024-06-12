@@ -15,7 +15,7 @@ const Analysis = () => {
         <Link to="/table" className="table">
           <img src={gifPath} alt="Table Analysis GIF" />
         </Link>
-        <Link to="/chart" className="chart">
+        <Link to="/sector-charts" className="chart">
           <img src={chart} alt="Chart Analysis GIF" />
         </Link>
       </div>
