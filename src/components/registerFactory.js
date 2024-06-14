@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import "../styles/registerfactory.css";
+import Web3 from "web3";
+import IPFSHashStorage from "../Server/IPFSHashStorage.json"; // Adjust the import according to your project structure
+import "../styles/registration.css"; // Import your styles
+
 
 const RegisterFactory = () => {
   const [factoryName, setFactoryName] = useState("");
@@ -9,114 +12,108 @@ const RegisterFactory = () => {
   const [contactEmail, setContactEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [registrationStatus, setRegistrationStatus] = useState("");
 
-  async function handleSubmit(e) {
-    e.preventDefault(); // Prevent default form submission behavior
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3002/registerFactory", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          factoryName,
-          location,
-          industry,
-          contactName,
-          contactEmail,
-          username,
-          password,
-        }),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Response from server:", responseData);
-        alert("Factory registered successfully!"); // Show success alert
-
-        // Handle successful registration (optional: clear form, show success message)
-        setFactoryName("");
-        setLocation("");
-        setIndustry("");
-        setContactName("");
-        setContactEmail("");
-        setUsername("");
-        setPassword("");
+      if (window.ethereum) {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
       } else {
-        const errorData = await response.json();
-        console.error("Error registering factory:", errorData);
-        alert("Failed to register factory: " + errorData.message); // Show error alert
+        throw new Error('Ethereum provider not detected');
       }
+
+      const web3 = new Web3(window.ethereum);
+      const accounts = await web3.eth.getAccounts();
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = IPFSHashStorage.networks[networkId];
+      const contract = new web3.eth.Contract(
+        IPFSHashStorage.abi,
+        deployedNetwork && deployedNetwork.address
+      );
+
+      const hashedPassword = web3.utils.sha3(password); // Hash password
+      await contract.methods.registerFactory(
+        factoryName,
+        location,
+        industry,
+        contactName,
+        contactEmail,
+        username,
+        hashedPassword
+      ).send({ from: accounts[0] });
+
+      setRegistrationStatus("Factory registered successfully");
+      setFactoryName("");
+      setLocation("");
+      setIndustry("");
+      setContactName("");
+      setContactEmail("");
+      setUsername("");
+      setPassword("");
     } catch (error) {
       console.error("Error registering factory:", error);
-      alert("An error occurred while registering the factory."); // Show error alert
+      setRegistrationStatus("Error registering factory: " + error.message);
     }
-  }
+  };
 
   return (
     <div className="register-factory-page">
       <div className="register-form-container">
         <h2>Register Factory</h2>
-        <form onSubmit={handleSubmit} className="regForm" method="POST">
-          <label htmlFor="factoryName">Factory Name:</label>
+        <form onSubmit={handleSubmit} className="regForm">
+          <label>Factory Name:</label>
           <input
             type="text"
-            id="factoryName"
             value={factoryName}
             onChange={(e) => setFactoryName(e.target.value)}
             required
           />
-          <label htmlFor="location">Location:</label>
+          <label>Location:</label>
           <input
             type="text"
-            id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
           />
-          <label htmlFor="industry">Industry:</label>
+          <label>Industry:</label>
           <input
             type="text"
-            id="industry"
             value={industry}
             onChange={(e) => setIndustry(e.target.value)}
             required
           />
-          <label htmlFor="contactName">Contact Name:</label>
+          <label>Contact Name:</label>
           <input
             type="text"
-            id="contactName"
             value={contactName}
             onChange={(e) => setContactName(e.target.value)}
             required
           />
-          <label htmlFor="contactEmail">Contact Email:</label>
+          <label>Contact Email:</label>
           <input
             type="email"
-            id="contactEmail"
             value={contactEmail}
             onChange={(e) => setContactEmail(e.target.value)}
             required
           />
-          <label htmlFor="username">Username:</label>
+          <label>Username:</label>
           <input
             type="text"
-            id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <label htmlFor="password">Password:</label>
+          <label>Password:</label>
           <input
             type="password"
-            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" className="registerSubmit">
-            Register
-          </button>
+          <button type="submit" className="registerSubmit">Register</button>
         </form>
+        {registrationStatus && <p>{registrationStatus}</p>}
       </div>
     </div>
   );

@@ -1,0 +1,82 @@
+/* General page styles */
+.register-factory-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Light background color */
+}
+
+.register-form-container {
+  background-color: #b8b0b0;
+  padding: 2.5rem;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 700px;
+  height: 650px;
+}
+
+.register-form-container h2 {
+  text-align: center;
+  color: #4a281e;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+input {
+  padding: 0.7rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  height: 30px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+  outline: none;
+  border-color: #8d6e63;
+  box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+.registerSubmit {
+  background-color: #ff7c4d;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  width: 10rem;
+  height: 3.5rem;
+  margin-top: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 60;
+}
+
+.registerSubmit:hover {
+  background-color: #5a3e34;
+}
+
+.registerSubmit:active {
+  background-color: #5d4037;
+}
+
+@media screen and (max-width: 480px) {
+  .register-form-container {
+    padding: 2rem;
+  }
+}
+
+.regForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
