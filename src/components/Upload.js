@@ -113,45 +113,45 @@ function Upload() {
     const contractAddress = "0x852233ff6e0997272a8fc707795e35a3349d919b";
     const contractABI = [
       {
-        constant: false,
-        inputs: [
+        "constant": false,
+        "inputs": [
           {
-            name: "_ipfsHash",
-            type: "string",
-          },
+            "name": "_ipfsHash",
+            "type": "string"
+          }
         ],
-        name: "setHash",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function",
+        "name": "setHash",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        constant: true,
-        inputs: [],
-        name: "getHash",
-        outputs: [
+        "constant": true,
+        "inputs": [],
+        "name": "getHash",
+        "outputs": [
           {
-            name: "",
-            type: "string",
-          },
+            "name": "",
+            "type": "string"
+          }
         ],
-        payable: false,
-        stateMutability: "view",
-        type: "function",
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
       },
       {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
           {
-            indexed: true,
-            name: "newHash",
-            type: "string",
-          },
+            "indexed": true,
+            "name": "newHash",
+            "type": "string"
+          }
         ],
-        name: "HashSet",
-        type: "event",
-      },
+        "name": "HashSet",
+        "type": "event"
+      }
     ];
 
     try {
