@@ -5,51 +5,52 @@
   align-items: center;
   height: 100vh;
   /* background-color: #f4f4f4; Light background color */
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 
 .register-form-container {
-  background-color: #b8b0b0;
+  background-color: #e4dfdf;
   padding: 2.5rem;
   border-radius: 30px;
   width: 100%;
   max-width: 700px;
-  height: 820px;
+  height: 930px;
   margin-bottom: 10rem;
-}
 
-.register-form-container h2 {
-  text-align: center;
-  color: #4a281e;
-  font-size: 3rem;
-  font-weight: 600;
-}
+  .title {
+    text-align: center;
+    color: #311912;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    font-family: "Roboto Mono", monospace;
+  }
+  input {
+    padding: 0.7rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+  }
 
-input {
-  padding: 0.7rem;
-  margin-bottom: 1.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  height: 30px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 0 2px rgba(0, 0, 0, 0.2);
+  input:focus {
+    outline: none;
+    border-color: #8d6e63;
+    box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+  }
 }
-
-input:focus {
-  outline: none;
-  border-color: #8d6e63;
-  box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
-}
-
 label {
-  font-weight: bold;
-  color: #555;
+  font-weight: bolder;
+  color: #2b2929;
+  font-size: 19px;
 }
 
 .registerSubmit {
-  background-color: #ff7c4d;
+  background-color: #753017;
   color: white;
   padding: 1rem;
   border: none;
@@ -60,7 +61,8 @@ label {
   font-size: 1.3rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-weight: 60;
+  font-weight: 700;
+  margin-left: 13vw;
 }
 
 .registerSubmit:hover {
@@ -81,5 +83,4 @@ label {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  
 }

@@ -60,7 +60,7 @@ const RegisterFactory = () => {
   return (
     <div className="register-factory-page">
       <div className="register-form-container">
-        <h2>Register Factory</h2>
+        <h2 className="title">Register Factory</h2>
         <form onSubmit={handleSubmit} className="regForm">
           <label>Factory Name:</label>
           <input

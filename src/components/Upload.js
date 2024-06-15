@@ -228,98 +228,112 @@ function Upload() {
 
   return (
     <div className="upload-container">
-      {isUploadMode ? (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="upload-file">
-            Select file:
-            <input type="file" id="upload-file" onChange={handleFileChange} />
-          </label>
-          <br />
-          <label htmlFor="factory-dropdown">
-            Factory Name:
-            <select
-              id="factory-dropdown"
-              value={factoryName}
-              onChange={handleFactoryChange}
-            >
-              {factoryOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <br />
-          <div className="button-group">
-            <button type="submit" className="button">
-              Upload
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsUploadMode(false)}
-              className="button"
-            >
-              Download
-            </button>
-            <button
-              type="button"
-              onClick={handleConvertAndStoreJson}
-              className="button"
-            >
-              Convert and Store JSON
-            </button>
-          </div>
-          {uploadMessage && <p className="upload-message">{uploadMessage}</p>}
-          {ipfsHash && isMetaMaskConnected && (
-            <button
-              type="button"
-              onClick={storeHashOnBlockchain}
-              className="button"
-            >
-              Store in Blockchain
-            </button>
-          )}
-        </form>
-      ) : (
-        <div className="download-section">
-          <label htmlFor="ipfs-hash" className="ipfs-hash">
-            <p>Enter IPFS Hash:</p>
-            <input
-              type="text"
-              id="ipfs-hash"
-              value={downloadHash}
-              onChange={(e) => setDownloadHash(e.target.value)}
-            />
-          </label>
-          <br />
-          <div className="button-group">
-            <button
-              type="button"
-              onClick={() => setIsUploadMode(true)}
-              className="button"
-            >
-              Upload
-            </button>
-            <button type="button" onClick={handleDownload} className="button">
-              Download
-            </button>
-          </div>
-          {downloadMessage && (
-            <p className="download-message">{downloadMessage}</p>
-          )}
-        </div>
-      )}
-      {isConverting && (
-        <JsonConverter
-          file={selectedFile}
-          factoryName={factoryName}
-          onConversionComplete={(message) => {
-            setUploadMessage(message);
-            setIsConverting(false);
-          }}
+  {isUploadMode ? (
+    <form onSubmit={handleSubmit} className="upload-form">
+      <label htmlFor="upload-file" className="upload-label">
+        Select file:
+        <input
+          type="file"
+          id="upload-file"
+          className="upload-input"
+          onChange={handleFileChange}
         />
+      </label>
+      <br />
+      <label htmlFor="factory-dropdown" className="upload-label">
+        Factory Name:
+        <select
+          id="factory-dropdown"
+          className="upload-select"
+          value={factoryName}
+          onChange={handleFactoryChange}
+        >
+          {factoryOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <br />
+      <div className="button-group">
+        <button type="submit" className="button upload-button">
+          Upload
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsUploadMode(false)}
+          className="button download-button"
+        >
+          Download
+        </button>
+        <button
+          type="button"
+          onClick={handleConvertAndStoreJson}
+          className="button convert-button"
+        >
+          Convert and Store JSON
+        </button>
+      </div>
+      {uploadMessage && (
+        <p className="message upload-message">{uploadMessage}</p>
+      )}
+      {ipfsHash && isMetaMaskConnected && (
+        <button
+          type="button"
+          onClick={storeHashOnBlockchain}
+          className="button blockchain-button"
+        >
+          Store in Blockchain
+        </button>
+      )}
+    </form>
+  ) : (
+    <div className="download-section">
+      <label htmlFor="ipfs-hash" className="download-label">
+        <p>Enter IPFS Hash:</p>
+        <input
+          type="text"
+          id="ipfs-hash"
+          className="download-input"
+          value={downloadHash}
+          onChange={(e) => setDownloadHash(e.target.value)}
+        />
+      </label>
+      <br />
+      <div className="button-group1">
+        <button
+          type="button"
+          onClick={() => setIsUploadMode(true)}
+          className="button upload-button"
+        >
+          Upload
+        </button>
+        <button
+          type="button"
+          onClick={handleDownload}
+          className="button download-button"
+        >
+          Download
+        </button>
+      </div>
+      {downloadMessage && (
+        <p className="message download-message">{downloadMessage}</p>
       )}
     </div>
+  )}
+  {isConverting && (
+    <JsonConverter
+      file={selectedFile}
+      factoryName={factoryName}
+      onConversionComplete={(message) => {
+        setUploadMessage(message);
+        setIsConverting(false);
+      }}
+    />
+  )}
+</div>
+
   );
 }
 
