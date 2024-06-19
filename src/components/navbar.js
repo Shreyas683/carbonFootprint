@@ -96,7 +96,6 @@ const Navbar = () => {
                     <span className="button_sl"></span>
                     <span className="button_text">Disconnect Metamask</span>
                   </span>
-                  
                 </button>
                 {/* <p>Connected account: {account}</p> */}
               </div>

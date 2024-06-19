@@ -1,152 +1,113 @@
-/* Base styles */
-body {
-  font-family: sans-serif;
-  background-color: #f0fff0; /* Light green background */
-}
-
-/* Form container */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #f0fff0; /* Light green background */
-  align-items: center;
-  margin-top: 5%;
+/* Container Styling */
+.upload-container {
+  padding: 20px;
+  border: 2px solid #4caf50; /* Green border */
+  border-radius: 10px;
+  background-color: #eef5ef; /* Light green background */
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  margin-top: 5vh;
   margin-bottom: 30vh;
 }
 
-/* Form labels */
-label {
-  display: block;
+/* Form Elements */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.upload-label {
   font-weight: bold;
-  color: #666;
+  color: #19421b; /* Darker green for text */
+  margin-bottom: 10px;
 }
 
-/* File input */
-#upload-file {
+.upload-input,
+.upload-select,
+.download-input {
+  width: 100%;
+  height: 40px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #7aaf7d; /* Light green border */
+  border-radius: 5px;
+  background-color: #f1f8e9; /* Light green background for input fields */
 }
 
-/* Dropdown */
-#factory-dropdown {
-  padding: 10px 80px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  margin-left: 20px;
+.upload-input:focus,
+.upload-select:focus,
+.download-input:focus {
+  outline: none;
+  border-color: #66bb6a; /* Highlight border on focus */
 }
 
-/* Submit button */
-
-/* Upload message */
-.upload-message {
-  color: darkgreen;
-  font-style: italic;
+/* Button Styling */
+.button-group {
+  display: flex;
+  justify-content: space-between;
 }
 
-.storeBtn {
-  cursor: pointer;
-}
 .button {
-  --color: #00a97f;
-  padding: 0.8em 1.7em;
-  background-color: transparent;
-  border-radius: 0.3em;
-  position: relative;
-  overflow: hidden;
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: 0.5s;
-  font-weight: 400;
-  font-size: 17px;
-  border: 1px solid;
-  font-family: inherit;
-  text-transform: uppercase;
-  color: var(--color);
-  z-index: 1;
-}
-
-.button::before,
-.button::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 50px;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  border-radius: 50%;
-  z-index: -1;
-  background-color: var(--color);
-  transition: 1s ease;
-}
-
-.button::before {
-  top: -1em;
-  left: -1em;
-}
-
-.button::after {
-  left: calc(100% + 1em);
-  top: calc(100% + 1em);
-}
-
-.button:hover::before,
-.button:hover::after {
-  height: 410px;
-  width: 410px;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  color: rgb(10, 25, 30);
+  background-color: #388e3c; /* Darker green on hover */
 }
 
-.button:active {
-  filter: brightness(0.8);
+/* Messages */
+.message {
+  color: #1b5e20; /* Dark green for messages */
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-.button-group .button {
-  margin-left: 80px;
+.upload-message {
 }
 
+.download-message {
+}
+
+/* Download Section */
 .download-section {
-  border: 2px solid #a9cca9;
-  border-radius: 20px;
-  box-shadow: 0 13px 15px rgba(8, 44, 27, 0.342);
-  margin-top: 8%;
-  margin-left: 31%;
-  margin-bottom: 50vh;
-  max-width: 650px;
-  height: 220px;
-}
-
-.ipfs-hash {
-  margin-bottom: 30px;
+  text-align: center;
   margin-top: 30px;
-  margin-left: 25px;
-}
-
-.ipfs-hash p {
-  font-size: 20px;
-  float: left;
-  margin-right: 20px;
-}
-
-.ipfs-hash input {
-  width: 400px;
-  height: 30px;
-  border-radius: 10px;
 }
 
 .button-group1{
-  margin-left: 16%;
-}
-.button-group1 .button {
-  margin-left: 60px;
+  margin-left: 30px;
+
+  button{
+    margin-left: 30px;
+  }
 }
 
-.download-message{
-  margin-left: 35%;
-  margin-top: 20px;
+.download-label {
+  display: block;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-group .button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
