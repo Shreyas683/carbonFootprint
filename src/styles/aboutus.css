@@ -1,0 +1,169 @@
+.us {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  margin: 50px auto;
+  width: 80%; /* Adjust width as needed */
+  margin-bottom: 30vh;
+}
+
+.card1 {
+  background-color: #f2f2f2; /* Light gray background */
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  background-color:antiquewhite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition-property: width;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  transition-delay: 2s
+}
+
+.card1 img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Circular profile image */
+  margin: 0 auto; /* Center image horizontally */
+  display: block; /* Display image as a block element */
+}
+.card1:hover {
+transform: scale(1.2); /* Subtle hover zoom effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+.card1 p {
+  font-weight: bold;
+  margin: 10px 0;
+  
+}
+
+.social-icons-contact1, .social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.social-icons-contact1 a, .social-icons a {
+  margin: 0 5px; /* Add spacing between icons */
+  color: inherit; /* Inherit color from parent element */
+}
+
+.social-icons-contact1 a:hover, .social-icons a:hover {
+  opacity: 0.7; /* Slightly reduce opacity on hover */
+}
+
+/* Specific styling for each social icon (optional) */
+.social-icons-contact1 svg, .social-icons svg {
+  font-size: 24px; /* Adjust size as needed */
+}
+
+.social-icons-contact1 .AiFillLinkedin, .social-icons .AiFillLinkedin {
+  color: #0077b5; /* LinkedIn blue */
+}
+
+.social-icons-contact1 .AiFillGithub, .social-icons .AiFillGithub {
+  color: #24292e; /* GitHub dark gray */
+}
+
+.social-icons-contact1 .AiFillInstagram, .social-icons .AiFillInstagram {
+  color: #e1306c; /* Instagram pink */
+}
+
+.social-icons-contact1 .AiFillWhatsapp, .social-icons .AiFillWhatsapp {
+  color: #25d366; /* WhatsApp green */
+}
+
+/* Add styling for any additional social icons you include */
+
+/* UserGuide.css */
+
+.user-guide-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  font-family: "Rubik", sans-serif;
+  font-weight: 371;
+}
+
+.user-guide-container h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #4a281e;
+  margin-bottom: 20px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.guide-section {
+  margin-bottom: 30px;
+}
+
+.guide-section h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #27130d;
+  margin-bottom: 15px;
+}
+
+.guide-section h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #271009;
+  margin-bottom: 10px;
+}
+
+.guide-section p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+.guide-section ol,
+.guide-section ul {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.guide-section li {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.guide-section ul li {
+  list-style-type: disc;
+}
+
+.guide-section ol li {
+  list-style-type: decimal;
+}
+
+.guide-section a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.guide-section a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .user-guide-container {
+    padding: 10px;
+  }
+}
+
+.str{
+    font-size: 21px;
+    font-weight: bolder;
+}
+
+.author{
+  margin-left: 40%;
+  font-weight: 800;
+  font-size: 50px;
+  color: #27130d;
+}
